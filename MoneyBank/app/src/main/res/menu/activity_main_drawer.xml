@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_cash"
+            android:icon="@android:drawable/ic_lock_lock"
+            android:title="@string/cash" />
+        <item
+            android:id="@+id/nav_cards"
+            android:icon="?android:attr/fingerprintAuthDrawable"
+            android:title="@string/cards" />
+        <item
+            android:id="@+id/nav_history"
+            android:icon="@android:drawable/ic_menu_view"
+            android:title="@string/history" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+
+    <item android:title="@string/others">
+        <menu>
+            <item
+                android:id="@+id/nav_events"
+                android:icon="@drawable/confirm"
+                android:title="@string/events" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/about"
+                android:title="About" />
+        </menu>
+    </item>
+
+</menu>

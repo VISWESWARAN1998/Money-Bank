@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "224091039837",
+    "firebase_url": "https://moneybank-664d6.firebaseio.com",
+    "project_id": "moneybank-664d6",
+    "storage_bucket": "moneybank-664d6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:224091039837:android:b03bf9b8854b6a1c",
+        "android_client_info": {
+          "package_name": "com.shiva.moneybank"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "224091039837-qt20jlafb54h2q4taubc4h28qbdhpt8r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.shiva.moneybank",
+            "certificate_hash": "df210c9d95f188e2985df20b7a0b2850c47c23d4"
+          }
+        },
+        {
+          "client_id": "224091039837-b35f35gniqos3437r9dev0826jdbi4tg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwgt2mHzpwtIFNXY_ORqcVPV1Cg0HfbGk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "224091039837-b35f35gniqos3437r9dev0826jdbi4tg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
