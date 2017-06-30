@@ -1,5 +1,6 @@
 package com.shiva.moneybank;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -30,6 +31,12 @@ public class Events extends AppCompatActivity {
     Toast toast;
     private SQLiteDatabase database;
     private int isDeposit = 0; //deposit =0 withdraw = false - SQLite database does not have boolean data-type so we use an int
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

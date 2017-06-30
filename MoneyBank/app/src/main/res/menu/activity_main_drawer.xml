@@ -8,7 +8,7 @@
             android:title="@string/cash" />
         <item
             android:id="@+id/nav_cards"
-            android:icon="?android:attr/fingerprintAuthDrawable"
+            android:icon="@android:drawable/ic_secure"
             android:title="@string/cards" />
         <item
             android:id="@+id/nav_history"

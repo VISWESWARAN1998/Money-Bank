@@ -40,8 +40,8 @@
     <string name="visa">Visa</string>
     <string name="master">Master</string>
     <string name="balancecard">Card Balance</string>
-    <string name="help">Please click on the below add to support OpenSource</string>
-    <string name="banner_ad_unit_id"></string>
+    <string name="help">Ads to support OpenSource</string>
+    <string name="banner_ad_unit_id">ADD YOURS HERE</string>
     <string name="na">NA</string>
     <string name="invalid">There may be a card in the database with the same name. Please change it</string>
     <string name="select">Select a card</string>
@@ -59,4 +59,7 @@
     <string name="title_activity_settings">Settings</string>
     <string name="delete">Delete a card</string>
     <string name="del">Delete</string>
+    <string name="salrynotify">Have you recived your salary? Amount: </string>
+    <string name="billnotify">Have you paid your bill? Amount: </string>
+    <string name="please">Please update</string>
 </resources>

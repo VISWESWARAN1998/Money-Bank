@@ -1,5 +1,6 @@
 package com.shiva.moneybank;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
@@ -11,6 +12,11 @@ public class License extends AppCompatActivity {
 
     private WebView cpol;
     private AdView mAdView;
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

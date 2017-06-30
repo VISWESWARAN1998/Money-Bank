@@ -68,6 +68,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-smallcaps"
             android:gravity="center"
+            android:textColor="@color/highlight"
             android:textSize="24sp" />
 
         <ListView

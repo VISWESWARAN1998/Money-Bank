@@ -31,10 +31,17 @@ public class CardsActivity extends AppCompatActivity {
     private SQLiteDatabase database;
     private boolean isDeposit = true;
     private int day,month,year;
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
     private ArrayList<String> cardsList;
     private ArrayAdapter<String> cardsAdapter;
     private AlertDialog.Builder selectCard;
     private Toast toast,toast1,toast2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

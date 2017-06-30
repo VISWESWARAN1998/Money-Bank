@@ -1,5 +1,7 @@
 package com.shiva.moneybank;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -26,11 +28,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.shiva.moneybank.api.CommonModel;
 
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -43,6 +46,12 @@ public class MainActivity extends AppCompatActivity
     private List<Balance> balanceList = new ArrayList<Balance>();
     private ArrayAdapter<Balance> balanceArrayAdapter;
     String currencyName = "";
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +90,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+//            super.onBackPressed();
+             this.finishAffinity();
         }
     }
 
@@ -101,7 +111,8 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent intent = new Intent(MainActivity.this,Settings.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
@@ -116,26 +127,32 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_cash) {
             Intent intent = new Intent(MainActivity.this,CashActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
         } else if (id == R.id.nav_cards) {
             Intent intent = new Intent(MainActivity.this,CardsActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
 
         } else if (id == R.id.nav_history) {
             Intent intent = new Intent(MainActivity.this,HistoryActivity.class);
             startActivity(intent);
+            MainActivity.this.finish();
 
         } else if (id == R.id.nav_manage) {
             Intent intent = new Intent(MainActivity.this,Settings.class);
             startActivity(intent);
+            MainActivity.this.finish();
 
         }  else if (id == R.id.nav_about) {
             Intent intent = new Intent(MainActivity.this,License.class);
             startActivity(intent);
+            MainActivity.this.finish();
         }
         else if(id==R.id.nav_events)
         {
             Intent intent = new Intent(MainActivity.this,Events.class);
             startActivity(intent);
+            MainActivity.this.finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -157,6 +174,8 @@ public class MainActivity extends AppCompatActivity
             database.execSQL("create table if not exists history(name text,amount double,process text,day int,month int,year int);");
             database.execSQL("create table if not exists cardHistory(name text,cname text,amount double,process text,day int,month int,year int);");
             database.execSQL("create table if not exists events(day int,month int,year int,event text,amount double,action int);");
+            database.execSQL("create table if not exists notifications(day int,month int,year int)");
+            database.execSQL("create table if not exists alarm(setx int);");
 
             Cursor cursor = database.rawQuery("select * from cash",null);
             if(cursor.moveToNext())
@@ -165,14 +184,13 @@ public class MainActivity extends AppCompatActivity
             }
             else toProcess = true;
 
-            // when app open, check notification
-            CommonModel.getInstance(MainActivity.this).checkNotification(database);
-
             return null;
         }
 
         protected void onPostExecute(Void v)
         {
+//            Intent intent = new Intent(MainActivity.this,Checker.class);
+//            startService(intent);
             if(toProcess)currencyView.setText(Database.cash.toString().trim());
             else
             {
@@ -195,6 +213,13 @@ public class MainActivity extends AppCompatActivity
 
             }
             new CardsDisplay().execute();
+
+            Cursor cursor = database.rawQuery("select * from alarm;",null);
+            if(cursor.getCount()==0)
+            {
+                setAlarm();
+                database.execSQL("insert into alarm values(0);");
+            }
         }
     }
 
@@ -246,8 +271,19 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onDestroy() {
-        // save last close time
-        CommonModel.getInstance(MainActivity.this).saveLastCloseTime();
         super.onDestroy();
+    }
+
+    public void setAlarm()
+    {
+        Calendar calendar = new GregorianCalendar();
+        calendar.set(Calendar.HOUR_OF_DAY,24);
+        calendar.set(Calendar.MINUTE,0);
+        calendar.set(Calendar.SECOND,0);
+        Intent intent = new Intent(MainActivity.this,Receiver.class);
+        PendingIntent intent1 = PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager manager = (AlarmManager)MainActivity.this.getSystemService(MainActivity.this.ALARM_SERVICE);
+        manager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,intent1);
+        //Toast.makeText(getApplicationContext(),"Alarm started",Toast.LENGTH_SHORT).show();
     }
 }

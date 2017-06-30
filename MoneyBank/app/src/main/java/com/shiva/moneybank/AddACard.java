@@ -26,7 +26,7 @@ public class AddACard extends AppCompatActivity {
     private Double balance;
     private EditText cardNameText,cardNumberText,cardBalanceText;
     private AdView mAdView;
-    private Spinner option;
+   // private Spinner option;
     private SQLiteDatabase database;
     boolean isDepositSelected = true;
     private Toast failed,success;
@@ -40,31 +40,31 @@ public class AddACard extends AppCompatActivity {
         cardNameText = (EditText)findViewById(R.id.cardNameText);
         cardNumberText = (EditText)findViewById(R.id.cardNumberText);
         cardBalanceText = (EditText)findViewById(R.id.cardBalanceText);
-        option = (Spinner)findViewById(R.id.cardSpinner);
+        //option = (Spinner)findViewById(R.id.cardSpinner);
         database = openOrCreateDatabase("bank.db",MODE_PRIVATE,null);
 
-        ArrayList<String> list = new ArrayList<String>();
-        list.add(getString(R.string.deposit));
-        list.add(getString(R.string.withdraw));
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
-        option.setAdapter(adapter);
+//        ArrayList<String> list = new ArrayList<String>();
+//        list.add(getString(R.string.deposit));
+//        list.add(getString(R.string.withdraw));
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,list);
+//        option.setAdapter(adapter);
         LayoutInflater inflater = getLayoutInflater();
         View view = inflater.inflate(R.layout.failure,(ViewGroup)findViewById(R.id.failed));
         failed = new Toast(getApplicationContext());
         failed.setDuration(Toast.LENGTH_LONG);
         failed.setView(view);
         failed.setGravity(Gravity.BOTTOM|Gravity.CENTER|Gravity.FILL_HORIZONTAL,0,0);
-        option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                isDepositSelected = parent.getItemAtPosition(position).toString().equals(getString(R.string.deposit)) ? true : false;
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
+//        option.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                isDepositSelected = parent.getItemAtPosition(position).toString().equals(getString(R.string.deposit)) ? true : false;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//
+//            }
+//        });
 
         LayoutInflater inflater1 = getLayoutInflater();
         View view1 = inflater1.inflate(R.layout.success,(ViewGroup)findViewById(R.id.success));

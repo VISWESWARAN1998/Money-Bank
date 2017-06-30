@@ -1,6 +1,7 @@
 package com.shiva.moneybank;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
@@ -34,6 +35,12 @@ public class CashActivity extends AppCompatActivity{
     private int day,month,year;
     private Toast successToast,insufficient;
     private ListView cashList;
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this,MainActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
